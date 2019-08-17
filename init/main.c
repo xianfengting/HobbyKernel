@@ -4,6 +4,7 @@
 #include <kernel/kernel.h>
 #include <kernel/debug.h>
 #include <kernel/panic.h>
+#include <kernel/gdt.h>
 
 static void output_char(char c, uint8_t **input_ptr)
 {
@@ -18,6 +19,7 @@ static void output_char(char c, uint8_t **input_ptr)
 int kern_entry(void)
 {
     init_debug();
+    init_gdt();
 
     /*
     uint8_t *input = (uint8_t *)0xB8000;
