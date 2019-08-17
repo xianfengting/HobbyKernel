@@ -1,0 +1,15 @@
+
+# The image files
+/floppy.img
+/floppy-*.img
+
+# The old or copy files
+/floppy.img.old
+/floppy-setup.img.copy
+/Makefile.old
+
+# The object files
+*.o
+
+# The kernel file
+hx_kernel

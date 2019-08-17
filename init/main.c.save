@@ -1,0 +1,64 @@
+
+#include "types.h"
+
+static void output_char(char c)
+{
+    uint8_t *input = (uint8_t) 0xB8000;
+    uint8_t color = (0 << 4) | (15 & 0x0F);
+    *input++ = c;
+    *input++ = color;
+}
+
+int kern_entry(void)
+{
+    /*
+    uint8_t *input = (uint8_t *)0xB8000;
+    uint8_t color = (0 << 4) | (15 & 0x0F);
+
+    *input++ = 'H'; *input++ = color;
+    *input++ = 'e'; *input++ = color;
+    *input++ = 'l'; *input++ = color;
+    *input++ = 'l'; *input++ = color;
+    *input++ = 'o'; *input++ = color;
+    *input++ = ','; *input++ = color;
+    *input++ = ' '; *input++ = color;
+    *input++ = 'O'; *input++ = color;
+    *input++ = 'S'; *input++ = color;
+    *input++ = ' '; *input++ = color;
+    *input++ = 'K'; *input++ = color;
+    *input++ = 'e'; *input++ = color;
+    *input++ = 'r'; *input++ = color;
+    *input++ = 'n'; *input++ = color;
+    *input++ = 'e'; *input++ = color;
+    *input++ = 'l'; *input++ = color;
+    *input++ = '!'; *input++ = color;
+    */
+
+        output_char('o');
+
+
+    output_char('w');
+    output_char('0');
+    output_char(' ');
+    output_char('d');
+    output_char('e');
+    output_char(' ');
+    output_char('d');
+    output_char('i');
+    output_char(' ');
+    output_char('y');
+    output_char('i');
+    output_char(' ');
+    output_char('g');
+    output_char('e');
+    output_char(' ');
+    output_char('n');
+    output_char('e');
+    output_char('i');
+    output_char(' ');
+    output_char('h');
+    output_char('e');
+
+    return 0;
+}
+
