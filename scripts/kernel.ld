@@ -8,6 +8,9 @@ SECTIONS
     /* 段起始位置 */
 
     . = 0x100000;
+
+    PROVIDE( kernel_start = . );
+
     .text :
     {
         *(.text)
@@ -38,6 +41,8 @@ SECTIONS
         *(.stabstr)
         . = ALIGN(4096);
     }
+
+    PROVIDE( kernel_end = . );
 
     /DISCARD/ : { *(.comment) *(.eh_frame) }
 }

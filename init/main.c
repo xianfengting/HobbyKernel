@@ -6,6 +6,7 @@
 #include <kernel/panic.h>
 #include <kernel/gdt.h>
 #include <kernel/idt.h>
+#include <kernel/pmm.h>
 
 static void output_char(char c, uint8_t **input_ptr)
 {
@@ -107,6 +108,10 @@ int start_kernel(void)
 
     // 开启中断
     __asm__ volatile ("sti");
+
+    printk("kernel in memory start: 0x%08X\n", kernel_start);
+    printk("kernel in memory end:   0x%08X\n", kernel_end);
+    printk("kernel in memory used:   %d KB\n\n", (kernel_end - kernel_start + 1023) / 1024);
 
     //panic_without_message();
 
