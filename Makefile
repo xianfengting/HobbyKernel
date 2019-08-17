@@ -36,7 +36,7 @@ update_image:
 	sudo mount floppy.img /mnt/kernel
 	sudo cp hx_kernel /mnt/kernel/hx_kernel
 	sudo cp hx_kernel /mnt/kernel/Sunny_kernel
-	sleep 1
+#	sleep 1
 	sudo umount /mnt/kernel
 
 .PHONY:mount_image
