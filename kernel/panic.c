@@ -28,6 +28,7 @@ void panic(const char *msg)
     print_stack_trace_color(rc_black, rc_red);
     print_panic_message("Registers' values:\n");
     //print_panic_message();
+    print_cur_status_color(rc_black, rc_red);
     print_panic_message("********************\n");
 
     // Halt the kernel by a loop.

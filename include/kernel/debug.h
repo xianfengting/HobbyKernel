@@ -12,6 +12,9 @@ void init_debug(void);
 // 打印当前的段存器值
 void print_cur_status(void);
 
+// Print the register values with color.
+void print_cur_status_color(real_color_t back, real_color_t fore);
+
 // Dump the current stack trace.
 void print_stack_trace(void);
 

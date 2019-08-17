@@ -17,6 +17,11 @@ void init_debug(void)
 
 void print_cur_status(void)
 {
+    print_cur_status_color(rc_black, rc_white);
+}
+
+void print_cur_status_color(real_color_t back, real_color_t fore)
+{
     static int round = 0;
     uint16_t reg1, reg2, reg3, reg4;
 
@@ -27,11 +32,13 @@ void print_cur_status(void)
             : "=m"(reg1), "=m"(reg2), "=m"(reg3), "=m"(reg4));
 
     // 打印当前的运行级别
-    printk("%d: @ring %d\n", round, reg1 & 0x3);
-    printk("%d:  cs = %x\n", round, reg1);
-    printk("%d:  ds = %x\n", round, reg2);
-    printk("%d:  es = %x\n", round, reg3);
-    printk("%d:  ss = %x\n", round, reg4);
+#define front_args back, fore
+    printk_color(front_args, "%d: @ring %d\n", round, reg1 & 0x3);
+    printk_color(front_args, "%d:  cs = %x\n", round, reg1);
+    printk_color(front_args, "%d:  ds = %x\n", round, reg2);
+    printk_color(front_args, "%d:  es = %x\n", round, reg3);
+    printk_color(front_args, "%d:  ss = %x\n", round, reg4);
+#undef front_args
     ++round;
 }
 
