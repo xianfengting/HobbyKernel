@@ -101,7 +101,12 @@ void vsprintf(char *buf, const char *fmt, va_list args){
                 p += strlen(p);
                 break;
             case 'c':
-                *p++ = va_arg(p_next_arg, char);
+                /*
+                 * Note that here must NOT be char, instead here must be int.
+                 * For more information see http://www.cppblog.com/ownwaterloo/archive/2009/04/21/unacceptable_type_in_va_arg.html
+                 */
+                //*p++ = va_arg(p_next_arg, char); // Wrong
+                *p++ = va_arg(p_next_arg, int); // Right
                 break;
             case 's':
                 *p = '\0';
