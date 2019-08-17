@@ -16,7 +16,7 @@ static void output_char(char c, uint8_t **input_ptr)
     *input_ptr = input;
 }
 
-int kern_entry(void)
+int start_kernel(void)
 {
     init_debug();
     init_gdt();
