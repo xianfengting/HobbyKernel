@@ -1,5 +1,5 @@
 
-[global gdt_flush]
+[GLOBAL gdt_flush]
 
 gdt_flush:
     mov eax, [esp+4]  ; 参数存入 eax 寄存器
