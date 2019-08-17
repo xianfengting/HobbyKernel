@@ -1,6 +1,7 @@
 
 #include <types.h>
 #include <kernel/console.h>
+#include <kernel/kernel.h>
 
 static void output_char(char c, uint8_t **input_ptr)
 {
@@ -86,6 +87,9 @@ int kern_entry(void)
 
     int n = strlen("abcdefg");
     int a = strcmp("abcdefg", "bbcdefg");
+
+    printk("n=%d\n", n);
+    printk("a=%d\n", a);
 
     return 0;
 }
