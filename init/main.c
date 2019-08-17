@@ -100,7 +100,15 @@ int start_kernel(void)
     printk("a=%d\n", a);
     printk("The char is %c\n", 'c');
 
-    panic_without_message();
+    __asm__ volatile ("int $0x3");
+    __asm__ volatile ("int $0x4");
+
+    init_timer(200);
+
+    // 开启中断
+    __asm__ volatile ("sti");
+
+    //panic_without_message();
 
     return 0;
 }
