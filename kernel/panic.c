@@ -32,7 +32,8 @@ void panic(const char *msg)
     print_panic_message("********************\n");
 
     // Halt the kernel by a loop.
-    while(1);
+    while (1)
+        __asm__ volatile("hlt"); // Halt the CPU.
 }
 
 void panic_without_message(void)
