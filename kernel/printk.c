@@ -19,3 +19,15 @@ void printk(const char *fmt, ...)
     va_end(args);
     console_write(buf);
 }
+
+void printk_color(real_color_t back, real_color_t fore, const char *fmt, ...)
+{
+    char buf[256];
+    va_list args;
+
+    memset(buf, 0, sizeof(buf));
+    va_start(args, fmt);
+    vsprintf(buf, fmt, args);
+    va_end(args);
+    console_write_color(buf, back, fore);
+}

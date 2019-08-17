@@ -3,6 +3,7 @@
  * debug.c : Implemention of kernel/debug.h
  */
 
+#include <elf.h>
 #include <kernel/kernel.h>
 #include <kernel/debug.h>
 
@@ -36,12 +37,17 @@ void print_cur_status(void)
 
 void print_stack_trace(void)
 {
+    print_stack_trace_color(rc_black, rc_white);
+}
+
+void print_stack_trace_color(real_color_t back, real_color_t fore)
+{
     uint32_t *ebp, *eip;
 
     asm volatile ("mov %%ebp, %0" : "=r" (ebp));
     while (ebp) {
         eip = ebp + 1;
-        printk("   [0x%x] %s\n", *eip, elf_lookup_symbol(*eip, &kernel_elf));
+        printk_color(back, fore, "   [0x%x] %s\n", *eip, elf_lookup_symbol(*eip, &kernel_elf));
         ebp = (uint32_t*)*ebp;
     }
 }

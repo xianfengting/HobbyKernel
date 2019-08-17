@@ -15,4 +15,7 @@ void print_cur_status(void);
 // Dump the current stack trace.
 void print_stack_trace(void);
 
+// Dump the current stack trace with color.
+void print_stack_trace_color(real_color_t back, real_color_t fore);
+
 #endif  // INCLUDE_DEBUG_H_
