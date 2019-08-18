@@ -114,9 +114,9 @@ int start_kernel(void)
 
     show_memory_map();
 
-    uint64_t b = get_kernel_uptime_milli();
-    printk("b=%llu\n", b);
-    printk_log_debug("b=%llu", b);
+    //uint64_t b = get_kernel_uptime_milli();
+    //printk("b=%llu\n", b);
+    //printk_log_debug("b=%llu", b);
 
     //panic_without_message();
 
