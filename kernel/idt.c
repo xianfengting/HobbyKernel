@@ -144,6 +144,7 @@ static void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags
 // 注册一个中断处理函数
 void register_interrupt_handler(uint8_t n, interrupt_handler_t h)
 {
+    printk_log_info("Registering handler of interrupt %d", n);
     interrupt_handlers[n] = h;
 }
 

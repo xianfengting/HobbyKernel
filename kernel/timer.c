@@ -17,6 +17,8 @@ void timer_callback(pt_regs *regs)
 
 void init_timer(uint32_t frequency)
 {
+    printk_log_info("Setting up kernel timer...");
+
     // 注册时间相关的处理函数
     register_interrupt_handler(IRQ0, timer_callback);
 
@@ -37,6 +39,8 @@ void init_timer(uint32_t frequency)
     // 分别写入低字节和高字节
     outb(0x40, low);
     outb(0x40, hign);
+
+    printk_log_info("Kernel timer is initialized.");
 }
 
 long double get_kernel_uptime(void)
