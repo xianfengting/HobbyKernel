@@ -90,18 +90,18 @@ int start_kernel(void)
     output_char('e', &input);
     */
 
-    console_write_color("zhe shi wo de di yi ge cao zuo xi tong nei he!!!\n", rc_black, rc_green);
+    //console_write_color("zhe shi wo de di yi ge cao zuo xi tong nei he!!!\n", rc_black, rc_green);
     //console_write_color("mima lianxi qq 123456789!\n", rc_black, rc_red);
 
-    int n = strlen("abcdefg");
-    int a = strcmp("abcdefg", "bbcdefg");
+    //int n = strlen("abcdefg");
+    //int a = strcmp("abcdefg", "bbcdefg");
 
-    printk("n=%d\n", n);
-    printk("a=%d\n", a);
-    printk("The char is %c\n", 'c');
+    //printk("n=%d\n", n);
+    //printk("a=%d\n", a);
+    //printk("The char is %c\n", 'c');
 
-    __asm__ volatile ("int $0x3");
-    __asm__ volatile ("int $0x4");
+    //__asm__ volatile ("int $0x3");
+    //__asm__ volatile ("int $0x4");
 
     init_timer(1000);
 
