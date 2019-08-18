@@ -11,5 +11,7 @@
 void printk(const char *fmt, ...);
 void printk_color(real_color_t back, real_color_t fore, const char *format, ...);
 void panic(const char *message);
+long double get_kernel_uptime(void);
+uint64_t get_kernel_uptime_milli(void);
 
 #endif

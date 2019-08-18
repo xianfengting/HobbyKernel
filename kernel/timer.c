@@ -3,11 +3,15 @@
 #include <kernel/debug.h>
 #include <common.h>
 #include <kernel/idt.h>
+#include <kernel/timer.h>
+#include <kernel/kernel.h>
+
+static uint64_t tick = 0;
 
 void timer_callback(pt_regs *regs)
 {
-    static uint32_t tick = 0;
-    printk_color(rc_black, rc_red, "Tick: %d\n", tick++);
+    //printk_color(rc_black, rc_red, "Tick: %d\n", tick++);
+    tick++;
 }
 
 void init_timer(uint32_t frequency)
@@ -32,4 +36,15 @@ void init_timer(uint32_t frequency)
     // 分别写入低字节和高字节
     outb(0x40, low);
     outb(0x40, hign);
+}
+
+long double get_kernel_uptime(void)
+{
+    long double d = (long double) tick;
+    return d / 1000.0;
+}
+
+uint64_t get_kernel_uptime_milli(void)
+{
+    return tick;
 }

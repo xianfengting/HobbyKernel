@@ -4,6 +4,7 @@
  */
 
 #include <string.h>
+#include <kernel/div64.h>
 #include <stdlib.h>
 
 // From https://github.com/SilverRainZ/OS67
@@ -43,6 +44,25 @@ char* uitoa(uint32_t value, char *str, int radix){
     while (value != 0){
         *p++ = "0123456789abcdef"[value%radix];
         value /= radix;
+        if (value == 0) break;
+    }
+    p--;
+
+    while (p >= reverse){
+        *str++ = *p--;
+    }
+
+    return str;
+}
+
+char* ulltoa(uint64_t value, char *str, int radix){
+    char reverse[36];
+    char *p = reverse;
+
+    *p++ = '\0';
+    while (value != 0){
+        unsigned long mod = do_div(value, radix);
+        *p++ = "0123456789abcdef"[mod];
         if (value == 0) break;
     }
     p--;
@@ -116,6 +136,23 @@ void vsprintf(char *buf, const char *fmt, va_list args){
             case 'f':
                 gcvt(va_arg(p_next_arg, double), 6, p);
                 p += strlen(p);
+                break;
+            case 'l':
+                fmt++;
+                switch (*fmt) {
+                    case 'l':
+                        fmt++;
+                        switch (*fmt) {
+                            case 'u':
+                                ulltoa(va_arg(p_next_arg, unsigned long long), p, 10);
+                                p += strlen(p);
+                            default:
+                                break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;

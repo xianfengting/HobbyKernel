@@ -113,6 +113,9 @@ int start_kernel(void)
     printk("kernel in memory end:   0x%08X\n", kernel_end);
     printk("kernel in memory used:   %d KB\n\n", (kernel_end - kernel_start + 1023) / 1024);
 
+    uint64_t b = get_kernel_uptime_milli();
+    printk("b=%llu\n", b);
+
     //panic_without_message();
 
     return 0;
