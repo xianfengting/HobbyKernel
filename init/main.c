@@ -20,6 +20,7 @@ static void output_char(char c, uint8_t **input_ptr)
 
 int start_kernel(void)
 {
+    console_clear();
     init_debug();
     init_gdt();
     init_idt();
@@ -89,8 +90,6 @@ int start_kernel(void)
     output_char('e', &input);
     */
 
-    console_clear();
-
     console_write_color("zhe shi wo de di yi ge cao zuo xi tong nei he!!!\n", rc_black, rc_green);
     //console_write_color("mima lianxi qq 123456789!\n", rc_black, rc_red);
 
@@ -104,7 +103,7 @@ int start_kernel(void)
     __asm__ volatile ("int $0x3");
     __asm__ volatile ("int $0x4");
 
-    init_timer(200);
+    init_timer(1000);
 
     // 开启中断
     __asm__ volatile ("sti");
@@ -115,6 +114,7 @@ int start_kernel(void)
 
     uint64_t b = get_kernel_uptime_milli();
     printk("b=%llu\n", b);
+    printk_log_debug("b=%llu", b);
 
     //panic_without_message();
 

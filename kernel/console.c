@@ -1,6 +1,7 @@
 
 #include <common.h>
 #include <kernel/console.h>
+#include <kernel/kernel.h>
 
 // VGA 的显示缓冲的起点是 0xB8000
 static uint16_t *video_memory = (uint16_t *)0xB8000;
@@ -61,6 +62,8 @@ void console_clear()
     cursor_x = 0;
     cursor_y = 0;
     move_cursor();
+
+    printk_log_info("Console is cleared.");
 }
 
 void console_putc_color(char c, real_color_t back, real_color_t fore)

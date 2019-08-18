@@ -5,6 +5,7 @@
 #include <kernel/idt.h>
 #include <kernel/timer.h>
 #include <kernel/kernel.h>
+#include <kernel/div64.h>
 
 static uint64_t tick = 0;
 

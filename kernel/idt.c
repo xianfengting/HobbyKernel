@@ -3,6 +3,7 @@
 #include <string.h>
 #include <kernel/debug.h>
 #include <kernel/idt.h>
+#include <kernel/kernel.h>
 
 // 中断描述符表
 idt_entry_t idt_entries[256];
@@ -22,6 +23,8 @@ extern void idt_flush(uint32_t);
 // 初始化中断描述符表
 void init_idt()
 {
+    printk_log_info("Setting up Intel 8259A");
+
     // 重新映射 IRQ 表
     // 两片级联的 Intel 8259A 芯片
     // 主片端口 0x20 0x21
@@ -52,12 +55,16 @@ void init_idt()
     outb(0x21, 0x0);
     outb(0xA1, 0x0);
 
+    printk_log_info("Initializing IDT");
+
     bzero((uint8_t *)&interrupt_handlers, sizeof(interrupt_handler_t) * 256);
     
     idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_ptr.base  = (uint32_t)&idt_entries;
     
     bzero((uint8_t *)&idt_entries, sizeof(idt_entry_t) * 256);
+
+    printk_log_info("Setting up IDT gates");
 
     // 0-32:  用于 CPU 的中断处理
     idt_set_gate( 0, (uint32_t)isr0,  0x08, 0x8E);
@@ -113,6 +120,8 @@ void init_idt()
 
     // 255 将来用于实现系统调用
     idt_set_gate(255, (uint32_t)isr255, 0x08, 0x8E);
+
+    printk_log_info("Updating IDT");
 
     // 更新设置中断描述符表
     idt_flush((uint32_t)&idt_ptr);

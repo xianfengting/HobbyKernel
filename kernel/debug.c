@@ -11,6 +11,7 @@ static elf_t kernel_elf;
 
 void init_debug(void)
 {
+    printk_log_info("Loading kernel ELF information from multiboot");
     // 从 GRUB 提供的信息中获取到内核符号表和代码地址信息
     kernel_elf = elf_from_multiboot(glb_mboot_ptr);
 }

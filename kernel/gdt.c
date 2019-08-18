@@ -1,6 +1,7 @@
 
 #include <kernel/gdt.h>
 #include <string.h>
+#include <kernel/kernel.h>
 
 // 全局描述符表长度
 #define GDT_LENGTH 5
@@ -20,6 +21,8 @@ extern uint32_t stack;
 // 初始化全局描述符表
 void init_gdt()
 {
+    printk_log_info("Setting up GDT");
+
     // 全局描述符表界限 e.g. 从 0 开始，所以总长要 - 1
     gdt_ptr.limit = sizeof(gdt_entry_t) * GDT_LENGTH - 1;
     gdt_ptr.base = (uint32_t)&gdt_entries;
