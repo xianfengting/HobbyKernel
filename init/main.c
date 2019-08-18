@@ -108,9 +108,11 @@ int start_kernel(void)
     // 开启中断
     __asm__ volatile ("sti");
 
-    printk("kernel in memory start: 0x%08X\n", kernel_start);
-    printk("kernel in memory end:   0x%08X\n", kernel_end);
-    printk("kernel in memory used:   %d KB\n\n", (kernel_end - kernel_start + 1023) / 1024);
+    printk_log_info("kernel in memory start: 0x%08X", kernel_start);
+    printk_log_info("kernel in memory end:   0x%08X", kernel_end);
+    printk_log_info("kernel in memory used:   %d KB\n", (kernel_end - kernel_start + 1023) / 1024);
+
+    show_memory_map();
 
     uint64_t b = get_kernel_uptime_milli();
     printk("b=%llu\n", b);

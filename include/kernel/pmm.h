@@ -10,6 +10,6 @@ extern uint8_t kernel_start[];
 extern uint8_t kernel_end[];
 
 // 输出 BIOS 提供的物理内存布局
-//void show_memory_map();
+void show_memory_map(void);
 
 #endif  // INCLUDE_PMM_H
